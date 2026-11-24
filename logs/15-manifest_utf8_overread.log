@@ -1,0 +1,56 @@
+=================================================================
+==714702==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x503000000083 at pc 0x61d809e50a95 bp 0x7ffd7b4d3ab0 sp 0x7ffd7b4d3aa8
+READ of size 1 at 0x503000000083 thread T0
+    #0 0x61d809e50a94 in lit_i_utf8_len_to_bytes /home/hyun/synology-bounty/pristine/lib/litutil.c:132:14
+    #1 0x61d809e50a94 in lit_i_read_utf8_string /home/hyun/synology-bounty/pristine/lib/litutil.c:86:14
+    #2 0x61d809e50108 in lit_read_manifest /home/hyun/synology-bounty/pristine/lib/litmanifest.c:164:29
+    #3 0x61d809e4fa09 in run_one /home/hyun/synology-bounty/harness/fuzz_litmanifest.c:67:5
+    #4 0x61d809e4fa09 in main /home/hyun/synology-bounty/harness/fuzz_litmanifest.c:82:5
+    #5 0x78aebe02a1c9  (/lib/x86_64-linux-gnu/libc.so.6+0x2a1c9) (BuildId: 8cebda42d140fc2b09639f8b13a5d5f2e617ef09)
+    #6 0x78aebe02a28a in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x2a28a) (BuildId: 8cebda42d140fc2b09639f8b13a5d5f2e617ef09)
+    #7 0x61d809d76364 in _start (/home/hyun/synology-bounty/litmanifest_repro+0x2c364) (BuildId: 1cca426cded4e909f05593e3e46a53d0d3f596ad)
+
+0x503000000083 is located 0 bytes after 19-byte region [0x503000000070,0x503000000083)
+allocated by thread T0 here:
+    #0 0x61d809e111b3 in malloc (/home/hyun/synology-bounty/litmanifest_repro+0xc71b3) (BuildId: 1cca426cded4e909f05593e3e46a53d0d3f596ad)
+    #1 0x61d809e4f78b in lit_get_file /home/hyun/synology-bounty/harness/fuzz_litmanifest.c:47:18
+    #2 0x61d809e4fe74 in lit_read_manifest /home/hyun/synology-bounty/pristine/lib/litmanifest.c:109:14
+    #3 0x61d809e4fa09 in run_one /home/hyun/synology-bounty/harness/fuzz_litmanifest.c:67:5
+    #4 0x61d809e4fa09 in main /home/hyun/synology-bounty/harness/fuzz_litmanifest.c:82:5
+    #5 0x78aebe02a1c9  (/lib/x86_64-linux-gnu/libc.so.6+0x2a1c9) (BuildId: 8cebda42d140fc2b09639f8b13a5d5f2e617ef09)
+    #6 0x78aebe02a28a in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x2a28a) (BuildId: 8cebda42d140fc2b09639f8b13a5d5f2e617ef09)
+    #7 0x61d809d76364 in _start (/home/hyun/synology-bounty/litmanifest_repro+0x2c364) (BuildId: 1cca426cded4e909f05593e3e46a53d0d3f596ad)
+
+SUMMARY: AddressSanitizer: heap-buffer-overflow /home/hyun/synology-bounty/pristine/lib/litutil.c:132:14 in lit_i_utf8_len_to_bytes
+Shadow bytes around the buggy address:
+  0x502ffffffe00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x502ffffffe80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x502fffffff00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x502fffffff80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x503000000000: fa fa 00 00 00 fa fa fa 00 00 03 fa fa fa 00 00
+=>0x503000000080:[03]fa fa fa 00 00 00 00 fa fa fa fa fa fa fa fa
+  0x503000000100: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x503000000180: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x503000000200: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x503000000280: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x503000000300: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+Shadow byte legend (one shadow byte represents 8 application bytes):
+  Addressable:           00
+  Partially addressable: 01 02 03 04 05 06 07 
+  Heap left redzone:       fa
+  Freed heap region:       fd
+  Stack left redzone:      f1
+  Stack mid redzone:       f2
+  Stack right redzone:     f3
+  Stack after return:      f5
+  Stack use after scope:   f8
+  Global redzone:          f9
+  Global init order:       f6
+  Poisoned by user:        f7
+  Container overflow:      fc
+  Array cookie:            ac
+  Intra object redzone:    bb
+  ASan internal:           fe
+  Left alloca redzone:     ca
+  Right alloca redzone:    cb
+==714702==ABORTING

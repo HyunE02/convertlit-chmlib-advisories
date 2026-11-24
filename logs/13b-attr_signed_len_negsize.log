@@ -1,0 +1,22 @@
+=================================================================
+==714640==ERROR: AddressSanitizer: negative-size-param: (size=-1)
+    #0 0x5f224e7176a1 in strncpy (/home/hyun/synology-bounty/litatom_repro+0xaf6a1) (BuildId: 2f1c6c576de789671570b071eb576d8bcaa6ae1e)
+    #1 0x5f224e76e310 in lit_read_atoms /home/hyun/synology-bounty/pristine/lib/litatom.c:186:9
+    #2 0x5f224e76da1d in run_one /home/hyun/synology-bounty/harness/fuzz_litatom.c:73:13
+    #3 0x5f224e76da1d in main /home/hyun/synology-bounty/harness/fuzz_litatom.c:89:5
+    #4 0x7a982bc2a1c9  (/lib/x86_64-linux-gnu/libc.so.6+0x2a1c9) (BuildId: 8cebda42d140fc2b09639f8b13a5d5f2e617ef09)
+    #5 0x7a982bc2a28a in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x2a28a) (BuildId: 8cebda42d140fc2b09639f8b13a5d5f2e617ef09)
+    #6 0x5f224e694364 in _start (/home/hyun/synology-bounty/litatom_repro+0x2c364) (BuildId: 2f1c6c576de789671570b071eb576d8bcaa6ae1e)
+
+0x502000000050 is located 0 bytes inside of 1-byte region [0x502000000050,0x502000000051)
+allocated by thread T0 here:
+    #0 0x5f224e72f1b3 in malloc (/home/hyun/synology-bounty/litatom_repro+0xc71b3) (BuildId: 2f1c6c576de789671570b071eb576d8bcaa6ae1e)
+    #1 0x5f224e76e2eb in lit_read_atoms /home/hyun/synology-bounty/pristine/lib/litatom.c:180:21
+    #2 0x5f224e76da1d in run_one /home/hyun/synology-bounty/harness/fuzz_litatom.c:73:13
+    #3 0x5f224e76da1d in main /home/hyun/synology-bounty/harness/fuzz_litatom.c:89:5
+    #4 0x7a982bc2a1c9  (/lib/x86_64-linux-gnu/libc.so.6+0x2a1c9) (BuildId: 8cebda42d140fc2b09639f8b13a5d5f2e617ef09)
+    #5 0x7a982bc2a28a in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x2a28a) (BuildId: 8cebda42d140fc2b09639f8b13a5d5f2e617ef09)
+    #6 0x5f224e694364 in _start (/home/hyun/synology-bounty/litatom_repro+0x2c364) (BuildId: 2f1c6c576de789671570b071eb576d8bcaa6ae1e)
+
+SUMMARY: AddressSanitizer: negative-size-param (/home/hyun/synology-bounty/litatom_repro+0xaf6a1) (BuildId: 2f1c6c576de789671570b071eb576d8bcaa6ae1e) in strncpy
+==714640==ABORTING

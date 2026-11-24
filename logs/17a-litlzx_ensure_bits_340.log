@@ -1,0 +1,52 @@
+=================================================================
+==823488==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x507000000067 at pc 0x5ddd5f43aa2d bp 0x7ffd3c228f50 sp 0x7ffd3c228f48
+READ of size 1 at 0x507000000067 thread T0
+    #0 0x5ddd5f43aa2c in lzx_read_lens /home/hyun/synology-bounty/pristine/lib/lzx/lzx.c:340:5
+    #1 0x5ddd5f43b365 in LZXdecompress /home/hyun/synology-bounty/pristine/lib/lzx/lzx.c:455:9
+    #2 0x5ddd5f4398e9 in run_one /home/hyun/synology-bounty/harness/fuzz_litlzx.c:63:5
+    #3 0x5ddd5f4398e9 in main /home/hyun/synology-bounty/harness/fuzz_litlzx.c:81:5
+    #4 0x7becdfa2a1c9  (/lib/x86_64-linux-gnu/libc.so.6+0x2a1c9) (BuildId: 8cebda42d140fc2b09639f8b13a5d5f2e617ef09)
+    #5 0x7becdfa2a28a in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x2a28a) (BuildId: 8cebda42d140fc2b09639f8b13a5d5f2e617ef09)
+    #6 0x5ddd5f360364 in _start (/home/hyun/synology-bounty/litlzx_repro+0x2c364) (BuildId: 80a71b8e9764fa5c6ed20c712c7a5b204c9017f3)
+
+0x507000000067 is located 1 bytes after 70-byte region [0x507000000020,0x507000000066)
+allocated by thread T0 here:
+    #0 0x5ddd5f3fb1b3 in malloc (/home/hyun/synology-bounty/litlzx_repro+0xc71b3) (BuildId: 80a71b8e9764fa5c6ed20c712c7a5b204c9017f3)
+    #1 0x5ddd5f4397e0 in main /home/hyun/synology-bounty/harness/fuzz_litlzx.c:78:20
+    #2 0x7becdfa2a1c9  (/lib/x86_64-linux-gnu/libc.so.6+0x2a1c9) (BuildId: 8cebda42d140fc2b09639f8b13a5d5f2e617ef09)
+    #3 0x7becdfa2a28a in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x2a28a) (BuildId: 8cebda42d140fc2b09639f8b13a5d5f2e617ef09)
+    #4 0x5ddd5f360364 in _start (/home/hyun/synology-bounty/litlzx_repro+0x2c364) (BuildId: 80a71b8e9764fa5c6ed20c712c7a5b204c9017f3)
+
+SUMMARY: AddressSanitizer: heap-buffer-overflow /home/hyun/synology-bounty/pristine/lib/lzx/lzx.c:340:5 in lzx_read_lens
+Shadow bytes around the buggy address:
+  0x506ffffffd80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x506ffffffe00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x506ffffffe80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x506fffffff00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x506fffffff80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+=>0x507000000000: fa fa fa fa 00 00 00 00 00 00 00 00[06]fa fa fa
+  0x507000000080: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x507000000100: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x507000000180: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x507000000200: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x507000000280: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+Shadow byte legend (one shadow byte represents 8 application bytes):
+  Addressable:           00
+  Partially addressable: 01 02 03 04 05 06 07 
+  Heap left redzone:       fa
+  Freed heap region:       fd
+  Stack left redzone:      f1
+  Stack mid redzone:       f2
+  Stack right redzone:     f3
+  Stack after return:      f5
+  Stack use after scope:   f8
+  Global redzone:          f9
+  Global init order:       f6
+  Poisoned by user:        f7
+  Container overflow:      fc
+  Array cookie:            ac
+  Intra object redzone:    bb
+  ASan internal:           fe
+  Left alloca redzone:     ca
+  Right alloca redzone:    cb
+==823488==ABORTING

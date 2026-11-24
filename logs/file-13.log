@@ -1,0 +1,24 @@
+=================================================================
+==1594345==ERROR: AddressSanitizer: negative-size-param: (size=-1)
+    #0 0x5dd28885d711 in strncpy (/home/hyun/synology-bounty/v3/bin/clit_arch+0xc0711) (BuildId: 43e4bbb7720cc26e4d1b75a7b8b840249e908877)
+    #1 0x5dd2888b93e0 in lit_read_atoms /home/hyun/synology-bounty/pristine/lib/litatom.c:186:9
+    #2 0x5dd2888b5ac1 in write_htmlish_file /home/hyun/synology-bounty/v3/archbuild/clit18/explode.c:494:25
+    #3 0x5dd2888b502d in explode_lit /home/hyun/synology-bounty/v3/archbuild/clit18/explode.c:109:30
+    #4 0x5dd2888b3e23 in main /home/hyun/synology-bounty/v3/archbuild/clit18/clit.c:261:18
+    #5 0x71be49c2a1c9  (/lib/x86_64-linux-gnu/libc.so.6+0x2a1c9) (BuildId: 8cebda42d140fc2b09639f8b13a5d5f2e617ef09)
+    #6 0x71be49c2a28a in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x2a28a) (BuildId: 8cebda42d140fc2b09639f8b13a5d5f2e617ef09)
+    #7 0x5dd2887da3d4 in _start (/home/hyun/synology-bounty/v3/bin/clit_arch+0x3d3d4) (BuildId: 43e4bbb7720cc26e4d1b75a7b8b840249e908877)
+
+0x5020000001d0 is located 0 bytes inside of 1-byte region [0x5020000001d0,0x5020000001d1)
+allocated by thread T0 here:
+    #0 0x5dd288875223 in malloc (/home/hyun/synology-bounty/v3/bin/clit_arch+0xd8223) (BuildId: 43e4bbb7720cc26e4d1b75a7b8b840249e908877)
+    #1 0x5dd2888b93bb in lit_read_atoms /home/hyun/synology-bounty/pristine/lib/litatom.c:180:21
+    #2 0x5dd2888b5ac1 in write_htmlish_file /home/hyun/synology-bounty/v3/archbuild/clit18/explode.c:494:25
+    #3 0x5dd2888b502d in explode_lit /home/hyun/synology-bounty/v3/archbuild/clit18/explode.c:109:30
+    #4 0x5dd2888b3e23 in main /home/hyun/synology-bounty/v3/archbuild/clit18/clit.c:261:18
+    #5 0x71be49c2a1c9  (/lib/x86_64-linux-gnu/libc.so.6+0x2a1c9) (BuildId: 8cebda42d140fc2b09639f8b13a5d5f2e617ef09)
+    #6 0x71be49c2a28a in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x2a28a) (BuildId: 8cebda42d140fc2b09639f8b13a5d5f2e617ef09)
+    #7 0x5dd2887da3d4 in _start (/home/hyun/synology-bounty/v3/bin/clit_arch+0x3d3d4) (BuildId: 43e4bbb7720cc26e4d1b75a7b8b840249e908877)
+
+SUMMARY: AddressSanitizer: negative-size-param (/home/hyun/synology-bounty/v3/bin/clit_arch+0xc0711) (BuildId: 43e4bbb7720cc26e4d1b75a7b8b840249e908877) in strncpy
+==1594345==ABORTING

@@ -1,0 +1,55 @@
+=================================================================
+==1594209==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x5030000000f0 at pc 0x59611633c818 bp 0x7ffd4f86c250 sp 0x7ffd4f86c248
+WRITE of size 8 at 0x5030000000f0 thread T0
+    #0 0x59611633c817 in lit_read_atoms /home/hyun/synology-bounty/pristine/lib/litatom.c:126:33
+    #1 0x596116338ac1 in write_htmlish_file /home/hyun/synology-bounty/v3/archbuild/clit18/explode.c:494:25
+    #2 0x59611633802d in explode_lit /home/hyun/synology-bounty/v3/archbuild/clit18/explode.c:109:30
+    #3 0x596116336e23 in main /home/hyun/synology-bounty/v3/archbuild/clit18/clit.c:261:18
+    #4 0x7fa38702a1c9  (/lib/x86_64-linux-gnu/libc.so.6+0x2a1c9) (BuildId: 8cebda42d140fc2b09639f8b13a5d5f2e617ef09)
+    #5 0x7fa38702a28a in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x2a28a) (BuildId: 8cebda42d140fc2b09639f8b13a5d5f2e617ef09)
+    #6 0x59611625d3d4 in _start (/home/hyun/synology-bounty/v3/bin/clit_arch+0x3d3d4) (BuildId: 43e4bbb7720cc26e4d1b75a7b8b840249e908877)
+
+0x5030000000f0 is located 0 bytes after 32-byte region [0x5030000000d0,0x5030000000f0)
+allocated by thread T0 here:
+    #0 0x5961162f8223 in malloc (/home/hyun/synology-bounty/v3/bin/clit_arch+0xd8223) (BuildId: 43e4bbb7720cc26e4d1b75a7b8b840249e908877)
+    #1 0x59611633be3a in lit_read_atoms /home/hyun/synology-bounty/pristine/lib/litatom.c:91:29
+    #2 0x596116338ac1 in write_htmlish_file /home/hyun/synology-bounty/v3/archbuild/clit18/explode.c:494:25
+    #3 0x59611633802d in explode_lit /home/hyun/synology-bounty/v3/archbuild/clit18/explode.c:109:30
+    #4 0x596116336e23 in main /home/hyun/synology-bounty/v3/archbuild/clit18/clit.c:261:18
+    #5 0x7fa38702a1c9  (/lib/x86_64-linux-gnu/libc.so.6+0x2a1c9) (BuildId: 8cebda42d140fc2b09639f8b13a5d5f2e617ef09)
+    #6 0x7fa38702a28a in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x2a28a) (BuildId: 8cebda42d140fc2b09639f8b13a5d5f2e617ef09)
+    #7 0x59611625d3d4 in _start (/home/hyun/synology-bounty/v3/bin/clit_arch+0x3d3d4) (BuildId: 43e4bbb7720cc26e4d1b75a7b8b840249e908877)
+
+SUMMARY: AddressSanitizer: heap-buffer-overflow /home/hyun/synology-bounty/pristine/lib/litatom.c:126:33 in lit_read_atoms
+Shadow bytes around the buggy address:
+  0x502ffffffe00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x502ffffffe80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x502fffffff00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x502fffffff80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x503000000000: fa fa 00 00 00 fa fa fa fd fd fd fa fa fa 00 00
+=>0x503000000080: 00 00 fa fa fd fd fd fa fa fa 00 00 00 00[fa]fa
+  0x503000000100: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x503000000180: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x503000000200: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x503000000280: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x503000000300: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+Shadow byte legend (one shadow byte represents 8 application bytes):
+  Addressable:           00
+  Partially addressable: 01 02 03 04 05 06 07 
+  Heap left redzone:       fa
+  Freed heap region:       fd
+  Stack left redzone:      f1
+  Stack mid redzone:       f2
+  Stack right redzone:     f3
+  Stack after return:      f5
+  Stack use after scope:   f8
+  Global redzone:          f9
+  Global init order:       f6
+  Poisoned by user:        f7
+  Container overflow:      fc
+  Array cookie:            ac
+  Intra object redzone:    bb
+  ASan internal:           fe
+  Left alloca redzone:     ca
+  Right alloca redzone:    cb
+==1594209==ABORTING

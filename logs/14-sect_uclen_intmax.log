@@ -1,0 +1,15 @@
+==714669==WARNING: AddressSanitizer failed to allocate 0xffffffff80000000 bytes
+AddressSanitizer:DEADLYSIGNAL
+=================================================================
+==714669==ERROR: AddressSanitizer: SEGV on unknown address 0x00008fff7fff (pc 0x59d02c568bd0 bp 0x7fff3458ad00 sp 0x7fff3458a7e0 T0)
+==714669==The signal is caused by a READ memory access.
+    #0 0x59d02c568bd0 in decompress_section /home/hyun/synology-bounty/harness/../pristine/lib/litsections.c:369:19
+    #1 0x59d02c56ab7f in run_one /home/hyun/synology-bounty/harness/fuzz_litsect.c:117:5
+    #2 0x59d02c56a72c in main /home/hyun/synology-bounty/harness/fuzz_litsect.c:133:5
+    #3 0x7c1a6b22a1c9  (/lib/x86_64-linux-gnu/libc.so.6+0x2a1c9) (BuildId: 8cebda42d140fc2b09639f8b13a5d5f2e617ef09)
+    #4 0x7c1a6b22a28a in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x2a28a) (BuildId: 8cebda42d140fc2b09639f8b13a5d5f2e617ef09)
+    #5 0x59d02c48d364 in _start (/home/hyun/synology-bounty/litsect_repro_O0+0x2c364) (BuildId: 4e4a54e0cb3aad5f6a6ad576eaa2f31667e1d7cd)
+
+AddressSanitizer can not provide additional info.
+SUMMARY: AddressSanitizer: SEGV /home/hyun/synology-bounty/harness/../pristine/lib/litsections.c:369:19 in decompress_section
+==714669==ABORTING

@@ -1,0 +1,16 @@
+AddressSanitizer:DEADLYSIGNAL
+=================================================================
+==714438==ERROR: AddressSanitizer: SEGV on unknown address 0x646adc486f90 (pc 0x646adc379786 bp 0x000000000000 sp 0x7ffcb4a2cec0 T0)
+==714438==The signal is caused by a WRITE memory access.
+    #0 0x646adc379786 in __asan::Allocator::Deallocate(void*, unsigned long, unsigned long, __sanitizer::BufferedStackTrace*, __asan::AllocType) (/home/hyun/synology-bounty/lithtml_repro+0x3d786) (BuildId: 76a1bb0498e7c95f802110499d19aa3418ed48eb)
+    #1 0x646adc411f9f in free (/home/hyun/synology-bounty/lithtml_repro+0xd5f9f) (BuildId: 76a1bb0498e7c95f802110499d19aa3418ed48eb)
+    #2 0x646adc4516ab in lit_reconstitute_html /home/hyun/synology-bounty/pristine/lib/litembiggen.c:437:38
+    #3 0x646adc450979 in run_one /home/hyun/synology-bounty/harness/fuzz_lithtml.c:74:5
+    #4 0x646adc450979 in main /home/hyun/synology-bounty/harness/fuzz_lithtml.c:112:5
+    #5 0x7e2100e2a1c9  (/lib/x86_64-linux-gnu/libc.so.6+0x2a1c9) (BuildId: 8cebda42d140fc2b09639f8b13a5d5f2e617ef09)
+    #6 0x7e2100e2a28a in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x2a28a) (BuildId: 8cebda42d140fc2b09639f8b13a5d5f2e617ef09)
+    #7 0x646adc377384 in _start (/home/hyun/synology-bounty/lithtml_repro+0x3b384) (BuildId: 76a1bb0498e7c95f802110499d19aa3418ed48eb)
+
+AddressSanitizer can not provide additional info.
+SUMMARY: AddressSanitizer: SEGV (/home/hyun/synology-bounty/lithtml_repro+0x3d786) (BuildId: 76a1bb0498e7c95f802110499d19aa3418ed48eb) in __asan::Allocator::Deallocate(void*, unsigned long, unsigned long, __sanitizer::BufferedStackTrace*, __asan::AllocType)
+==714438==ABORTING

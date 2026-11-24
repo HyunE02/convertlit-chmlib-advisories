@@ -1,0 +1,14 @@
+AddressSanitizer:DEADLYSIGNAL
+=================================================================
+==714406==ERROR: AddressSanitizer: SEGV on unknown address 0x57d0e2cb3b18 (pc 0x57cce2c4dcb1 bp 0x7fffa799f240 sp 0x7fffa799f0c0 T0)
+==714406==The signal is caused by a READ memory access.
+    #0 0x57cce2c4dcb1 in lit_reconstitute_html /home/hyun/synology-bounty/pristine/lib/litembiggen.c
+    #1 0x57cce2c4c979 in run_one /home/hyun/synology-bounty/harness/fuzz_lithtml.c:74:5
+    #2 0x57cce2c4c979 in main /home/hyun/synology-bounty/harness/fuzz_lithtml.c:112:5
+    #3 0x732630c2a1c9  (/lib/x86_64-linux-gnu/libc.so.6+0x2a1c9) (BuildId: 8cebda42d140fc2b09639f8b13a5d5f2e617ef09)
+    #4 0x732630c2a28a in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x2a28a) (BuildId: 8cebda42d140fc2b09639f8b13a5d5f2e617ef09)
+    #5 0x57cce2b73384 in _start (/home/hyun/synology-bounty/lithtml_repro+0x3b384) (BuildId: 76a1bb0498e7c95f802110499d19aa3418ed48eb)
+
+AddressSanitizer can not provide additional info.
+SUMMARY: AddressSanitizer: SEGV /home/hyun/synology-bounty/pristine/lib/litembiggen.c in lit_reconstitute_html
+==714406==ABORTING

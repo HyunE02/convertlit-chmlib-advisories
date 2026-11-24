@@ -1,0 +1,6 @@
+The advisory text, verification data and tooling in this repository are released under
+CC0 1.0 Universal (public domain dedication), so that distributions and maintainers can
+reuse them without restriction.
+
+The proof-of-concept inputs are data files that trigger the described defects. They are
+published for the purpose of fixing or removing the affected software.

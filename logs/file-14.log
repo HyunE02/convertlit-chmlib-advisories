@@ -1,0 +1,18 @@
+==1594389==WARNING: AddressSanitizer failed to allocate 0xffffffff80000000 bytes
+AddressSanitizer:DEADLYSIGNAL
+=================================================================
+==1594389==ERROR: AddressSanitizer: SEGV on unknown address 0x00008fff7fff (pc 0x55937cdd0302 bp 0x7fff0be1ebc0 sp 0x7fff0be1e6a0 T0)
+==1594389==The signal is caused by a READ memory access.
+    #0 0x55937cdd0302 in decompress_section /home/hyun/synology-bounty/pristine/lib/litsections.c:369:19
+    #1 0x55937cdce749 in lit_i_cache_section /home/hyun/synology-bounty/pristine/lib/litsections.c:189:22
+    #2 0x55937cdcbed7 in lit_get_file /home/hyun/synology-bounty/pristine/lib/litlib.c:317:22
+    #3 0x55937cdbfa06 in write_htmlish_file /home/hyun/synology-bounty/v3/archbuild/clit18/explode.c:497:18
+    #4 0x55937cdbec78 in explode_lit /home/hyun/synology-bounty/v3/archbuild/clit18/explode.c:109:30
+    #5 0x55937cdbd79e in main /home/hyun/synology-bounty/v3/archbuild/clit18/clit.c:261:18
+    #6 0x7b87e842a1c9  (/lib/x86_64-linux-gnu/libc.so.6+0x2a1c9) (BuildId: 8cebda42d140fc2b09639f8b13a5d5f2e617ef09)
+    #7 0x7b87e842a28a in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x2a28a) (BuildId: 8cebda42d140fc2b09639f8b13a5d5f2e617ef09)
+    #8 0x55937cce33c4 in _start (/home/hyun/synology-bounty/v3/bin/clit_arch_O0+0x3d3c4) (BuildId: 1d060acbba33409effdc5dece4df625817123216)
+
+AddressSanitizer can not provide additional info.
+SUMMARY: AddressSanitizer: SEGV /home/hyun/synology-bounty/pristine/lib/litsections.c:369:19 in decompress_section
+==1594389==ABORTING

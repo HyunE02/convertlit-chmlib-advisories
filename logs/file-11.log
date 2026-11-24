@@ -1,0 +1,19 @@
+Error reading file "gen/final/f11.lit" -- 
+	Unknown or unrecognized tag 00000000 at position 2.
+	Current depth is 0. AddressSanitizer:DEADLYSIGNAL
+=================================================================
+==1594154==ERROR: AddressSanitizer: SEGV on unknown address 0x6431581e2bd0 (pc 0x6431580cc7d6 bp 0x000000000000 sp 0x7ffc2c21ebc0 T0)
+==1594154==The signal is caused by a WRITE memory access.
+    #0 0x6431580cc7d6 in __asan::Allocator::Deallocate(void*, unsigned long, unsigned long, __sanitizer::BufferedStackTrace*, __asan::AllocType) (/home/hyun/synology-bounty/v3/bin/clit_arch+0x3f7d6) (BuildId: 43e4bbb7720cc26e4d1b75a7b8b840249e908877)
+    #1 0x643158164fef in free (/home/hyun/synology-bounty/v3/bin/clit_arch+0xd7fef) (BuildId: 43e4bbb7720cc26e4d1b75a7b8b840249e908877)
+    #2 0x6431581acfdb in lit_reconstitute_html /home/hyun/synology-bounty/pristine/lib/litembiggen.c:437:38
+    #3 0x6431581a5d8e in write_htmlish_file /home/hyun/synology-bounty/v3/archbuild/clit18/explode.c
+    #4 0x6431581a502d in explode_lit /home/hyun/synology-bounty/v3/archbuild/clit18/explode.c:109:30
+    #5 0x6431581a3e23 in main /home/hyun/synology-bounty/v3/archbuild/clit18/clit.c:261:18
+    #6 0x784ab5e2a1c9  (/lib/x86_64-linux-gnu/libc.so.6+0x2a1c9) (BuildId: 8cebda42d140fc2b09639f8b13a5d5f2e617ef09)
+    #7 0x784ab5e2a28a in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x2a28a) (BuildId: 8cebda42d140fc2b09639f8b13a5d5f2e617ef09)
+    #8 0x6431580ca3d4 in _start (/home/hyun/synology-bounty/v3/bin/clit_arch+0x3d3d4) (BuildId: 43e4bbb7720cc26e4d1b75a7b8b840249e908877)
+
+AddressSanitizer can not provide additional info.
+SUMMARY: AddressSanitizer: SEGV (/home/hyun/synology-bounty/v3/bin/clit_arch+0x3f7d6) (BuildId: 43e4bbb7720cc26e4d1b75a7b8b840249e908877) in __asan::Allocator::Deallocate(void*, unsigned long, unsigned long, __sanitizer::BufferedStackTrace*, __asan::AllocType)
+==1594154==ABORTING

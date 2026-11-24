@@ -1,0 +1,53 @@
+=================================================================
+==714460==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x502000000040 at pc 0x577c35a42632 bp 0x7ffe1dcfb370 sp 0x7ffe1dcfb368
+WRITE of size 4 at 0x502000000040 thread T0
+    #0 0x577c35a42631 in lit_read_atoms /home/hyun/synology-bounty/pristine/lib/litatom.c:99:21
+    #1 0x577c35a41a1d in run_one /home/hyun/synology-bounty/harness/fuzz_litatom.c:73:13
+    #2 0x577c35a41a1d in main /home/hyun/synology-bounty/harness/fuzz_litatom.c:89:5
+    #3 0x7cfaf2e2a1c9  (/lib/x86_64-linux-gnu/libc.so.6+0x2a1c9) (BuildId: 8cebda42d140fc2b09639f8b13a5d5f2e617ef09)
+    #4 0x7cfaf2e2a28a in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x2a28a) (BuildId: 8cebda42d140fc2b09639f8b13a5d5f2e617ef09)
+    #5 0x577c35968364 in _start (/home/hyun/synology-bounty/litatom_repro+0x2c364) (BuildId: 2f1c6c576de789671570b071eb576d8bcaa6ae1e)
+
+0x502000000040 is located 15 bytes after 1-byte region [0x502000000030,0x502000000031)
+allocated by thread T0 here:
+    #0 0x577c35a031b3 in malloc (/home/hyun/synology-bounty/litatom_repro+0xc71b3) (BuildId: 2f1c6c576de789671570b071eb576d8bcaa6ae1e)
+    #1 0x577c35a41d6a in lit_read_atoms /home/hyun/synology-bounty/pristine/lib/litatom.c:91:29
+    #2 0x577c35a41a1d in run_one /home/hyun/synology-bounty/harness/fuzz_litatom.c:73:13
+    #3 0x577c35a41a1d in main /home/hyun/synology-bounty/harness/fuzz_litatom.c:89:5
+    #4 0x7cfaf2e2a1c9  (/lib/x86_64-linux-gnu/libc.so.6+0x2a1c9) (BuildId: 8cebda42d140fc2b09639f8b13a5d5f2e617ef09)
+    #5 0x7cfaf2e2a28a in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x2a28a) (BuildId: 8cebda42d140fc2b09639f8b13a5d5f2e617ef09)
+    #6 0x577c35968364 in _start (/home/hyun/synology-bounty/litatom_repro+0x2c364) (BuildId: 2f1c6c576de789671570b071eb576d8bcaa6ae1e)
+
+SUMMARY: AddressSanitizer: heap-buffer-overflow /home/hyun/synology-bounty/pristine/lib/litatom.c:99:21 in lit_read_atoms
+Shadow bytes around the buggy address:
+  0x501ffffffd80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x501ffffffe00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x501ffffffe80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x501fffffff00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x501fffffff80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+=>0x502000000000: fa fa fd fa fa fa 01 fa[fa]fa fa fa fa fa fa fa
+  0x502000000080: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x502000000100: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x502000000180: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x502000000200: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x502000000280: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+Shadow byte legend (one shadow byte represents 8 application bytes):
+  Addressable:           00
+  Partially addressable: 01 02 03 04 05 06 07 
+  Heap left redzone:       fa
+  Freed heap region:       fd
+  Stack left redzone:      f1
+  Stack mid redzone:       f2
+  Stack right redzone:     f3
+  Stack after return:      f5
+  Stack use after scope:   f8
+  Global redzone:          f9
+  Global init order:       f6
+  Poisoned by user:        f7
+  Container overflow:      fc
+  Array cookie:            ac
+  Intra object redzone:    bb
+  ASan internal:           fe
+  Left alloca redzone:     ca
+  Right alloca redzone:    cb
+==714460==ABORTING
